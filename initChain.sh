@@ -7,6 +7,7 @@ if [ -n "$pid" ]; then
 fi
 
 rm -rf ~/.ethereum_private/
+rm -rf ~/.ethash/
 
 #sleep 2
 # start the private blockchain and create accounts
@@ -15,14 +16,17 @@ rm -rf ~/.ethereum_private/
 #personal.newAccount("Write here a good, randomly generated, passphrase!")
 #EOF
 geth --datadir ~/.ethereum_private init $1
-geth --rpc --cache 512 --ipcpath ~/Library/Ethereum/geth.ipc --networkid 12345 --datadir ~/.ethereum_private &
 sleep 2
 cat << EOF | geth account new --datadir ~/.ethereum_private
 bla
 bla
 EOF
-#cat << EOF | geth account new --datadir ~/.ethereum_private
-#bla
-#bla
-#EOF
-geth --unlock $(geth account list --datadir ~/.ethereum_private) --password "bla"
+cat << EOF | geth account new --datadir ~/.ethereum_private
+bla
+bla
+EOF
+cat << EOF | geth --networkid 15 --unlock "0,1" --rpc --cache 512 --ipcpath ~/Library/Ethereum/geth.ipc --networkid 12345 --datadir ~/.ethereum_private &
+bla
+bla
+EOF
+geth attach
