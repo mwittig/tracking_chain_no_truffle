@@ -25,8 +25,7 @@ cat << EOF | geth account new --datadir ~/.ethereum_private
 bla
 bla
 EOF
-cat << EOF | geth --networkid 15 --unlock "0,1" --rpc --cache 512 --ipcpath ~/Library/Ethereum/geth.ipc --networkid 12345 --datadir ~/.ethereum_private &
+cat << EOF | geth --verbosity 4 --networkid 15 --unlock "0,1" --rpc --cache 512 --ipcpath ~/Library/Ethereum/geth.ipc --networkid 12345 --datadir ~/.ethereum_private &
 bla
 bla
 EOF
-geth attach
