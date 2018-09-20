@@ -15,7 +15,7 @@ rm -rf ~/.ethash/
 #personal.newAccount("Write here a good, randomly generated, passphrase!")
 #personal.newAccount("Write here a good, randomly generated, passphrase!")
 #EOF
-geth --datadir ~/.ethereum_private init $1
+geth --ws --wsport 8546 --datadir ~/.ethereum_private init $1
 sleep 2
 cat << EOF | geth account new --datadir ~/.ethereum_private
 bla
