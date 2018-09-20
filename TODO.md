@@ -3,6 +3,7 @@ TODO - BlockChain Experimente
 
 1. Subscription auf dem HTTP-Provider aktivieren (vermutlich geht das per geth Konfig bzw. Command Line)  
 	-> HttpProvider unterstützt keine Subscription (daher WS als Provider; Geth Initialisierung muss erweitert werden)
+	-> WS tut sich auch schwer, daher mit IPC
 
 2. geth Konfiguration -> private blockchain setup (BS Node verbindet sich zur Zeit noch in das global Netzwerk)
 
