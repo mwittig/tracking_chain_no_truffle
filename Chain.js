@@ -14,16 +14,33 @@ module.exports = function (callback) {
         account = accounts[0];
     }).then (function () {
         contract = new web3.eth.Contract(TrackingContractJSON.abi, '0xc4abd0339eb8d57087278718986382264244252f');
+
+        contract.events.PositionValue({
+        }, function(error, event){ 
+            if (error) console.log("error", error); 
+        })
+        .on('data', function(event){
+            console.log("data", event); // same results as the optional callback above
+        })
+        .on('changed', function(event){
+            console.log("changed", event);
+            // remove event from local database
+        })
+        .on('error', function(event){
+            console.log("error 2", event); 
+        })
+
         return contract.methods.setRandomPosition(12, 45).send ({
             from: account
         })
-    }).then (function (hash) {
-        console.log(contract.methods.getCurrentPos())
-        return contract.methods.position ().send ({
+    })
+    .then (function (hash) {
+        contract.methods.currentPos().send ({
             from: account
         }).then (function (receipt) {
-            console.log (receipt);
+            //console.log (receipt);
         });
+        
     });
 };
 
