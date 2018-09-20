@@ -6,12 +6,12 @@ TODO - BlockChain Experimente
 	-> WS tut sich auch schwer, daher mit IPC  
 	-> IpcProvider funktioniert, weiter mit Subscriptions; contractAddress ist immer noch null
 
-2. geth Konfiguration -> private blockchain setup (BS Node verbindet sich zur Zeit noch in das global Netzwerk)  
+2. geth Konfiguration -> private blockchain setup (BS Node verbindet sich zur Zeit noch in das globale Netzwerk)  
 	-> bisher nicht sehr viele Hinweise gefunden (denn unsere networkId ist ja ungleich 1)
 
-3. Änderunge des Consensus Model -> Proof of Authority statt Proof of Work  
-	-> Genesis-Block hinsichtlich PoA (Clique) geändert ,jedoch Fehler: "makeslice: len out of range"
+3. Änderungen des Consensus Model -> Proof of Authority statt Proof of Work  
+	-> Genesis-Block hinsichtlich PoA (Clique) geändert, jedoch Fehler: "makeslice: len out of range"
 
 4. Puppeth anschauen
 
-5. Zweite Dapp schreiben, die Positionsdaten empfängt (via Event-Subscription). Die Dapp kann auch eine einfache Node.js Anwnedung sein, die auf der Command Line ausgibt. 
+5. Zweite Dapp schreiben, die Positionsdaten empfängt (via Event-Subscription). Die Dapp kann auch eine einfache Node.js Anwendung sein, die auf der Command Line ausgibt. 
