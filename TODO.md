@@ -14,4 +14,6 @@ TODO - BlockChain Experimente
 
 4. Puppeth anschauen
 
-5. Zweite Dapp schreiben, die Positionsdaten empfängt (via Event-Subscription). Die Dapp kann auch eine einfache Node.js Anwendung sein, die auf der Command Line ausgibt. 
+5. Zweite Dapp schreiben, die Positionsdaten empfängt (via Event-Subscription). Die Dapp kann auch eine einfache Node.js Anwendung sein, die auf der Command Line ausgibt.  
+
+6. Wieso ist die ContractAddress immer null?
