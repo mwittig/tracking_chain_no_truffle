@@ -4,7 +4,7 @@ path = require('path'),
     TrackingContractJSON = require(path.join(__dirname, '../tracking_chain/build/contracts/PositionTracking.json'));
 
 module.exports = function (callback) {
-    var provider = new Web3.providers.WebsocketProvider('ws://localhost:8546');
+    var provider = new Web3.providers.IpcProvider('/home/telekom/Library/Ethereum/geth.ipc', net);//('ws://localhost:8546');
     var web3 = new Web3(provider);
     var account;
     var contract;
@@ -14,7 +14,7 @@ module.exports = function (callback) {
             console.log("----")
             account = accounts[0];
         }).then(function () {
-            contract = new web3.eth.Contract(TrackingContractJSON.abi, TrackingContractJSON.network['15'].address);
+            contract = new web3.eth.Contract(TrackingContractJSON.abi, TrackingContractJSON.networks['15'].address);
 
             contract.events.PositionValue({
             }, function (error, event) {
