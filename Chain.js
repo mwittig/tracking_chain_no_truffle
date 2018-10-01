@@ -1,18 +1,13 @@
-var Web3 = require('web3');
+const net = require ('net');
+const Web3 = require('web3');
 path = require('path'),
     TrackingContractJSON = require(path.join(__dirname, '../tracking_chain/build/contracts/PositionTracking.json'));
 
 module.exports = function (callback) {
-    var provider = new Web3.providers.WebsocketProvider('ws://127.0.0.1:8545');
+    var provider = new Web3.providers.IpcProvider('/home/telekom/Library/Ethereum/geth.ipc', net);
     var web3 = new Web3(provider);
     var account;
     var contract;
-
-    web3.eth.subscribe("pendingTransactions"
-        , function (err, result) {
-            if (err) { console.log(err) }
-            else { console.log("result: ", result) }
-        });
 
     accounts = web3.eth.getAccounts()
         .then(function (accounts) {
@@ -43,7 +38,7 @@ module.exports = function (callback) {
             contract.methods.currentPos().send({
                 from: account
             }).then(function (receipt) {
-                //console.log (receipt);
+                console.log (receipt);
             });
 
         });
