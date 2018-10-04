@@ -11,7 +11,7 @@ module.exports = function (callback) {
 
     accounts = web3.eth.getAccounts()
         .then(function (accounts) {
-            console.log("----")
+            // deprecated; addresses must be used
             account = accounts[0];
         }).then(function () {
             contract = new web3.eth.Contract(TrackingContractJSON.abi, TrackingContractJSON.networks['15'].address);
@@ -21,30 +21,37 @@ module.exports = function (callback) {
                 if (error) console.log("error", error);
             })
                 .on('data', function (event) {
-                    console.log("data", event); // same results as the optional callback above
+                    console.log("data", event, "\n######################################\n"); // same results as the optional callback above
                 })
                 .on('changed', function (event) {
-                    console.log("changed", event);
+                    console.log("changed", event, "\n######################################\n");
                     // remove event from local database
                 })
                 .on('error', function (event) {
-                    console.log("error 2", event);
+                    console.log("error 2", event, "\n######################################\n");
                 })
 
-            return contract.methods.setRandomPosition(12, 45).send({
-                from: account
-            })
-        })
-        .then(function (hash) {
-            contract.methods.currentPos().send({
-                from: account
-            }).then(function (receipt) {
-                console.log(receipt);
-            });
-
-        }).catch(function (e) {
-            console.log(e)
+            setInterval (sendPositionIntoBlockchain, 2000);
         });
+        // .then(function (hash) {
+        //     contract.methods.currentPos().send({
+        //         from: account
+        //     }).then(function (receipt) {
+        //         console.log(receipt);
+        //     });
+
+        // }).catch(function (e) {
+        //     console.log(e)
+        // });
+        function sendPositionIntoBlockchain ()
+        {
+            var x = Math.random() * (1000 - 0) + 0;
+            var y = Math.random() * (1000 - 0) + 0;
+            
+            contract.methods.setRandomPosition(x, y).send({
+                from: account
+            });
+        }
 };
 
 module.exports();
