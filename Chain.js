@@ -1,6 +1,6 @@
 const net = require('net');
 const Web3 = require('web3');
-path = require('path'),
+var path = require('path'),
     TrackingContractJSON = require(path.join(__dirname, '../tracking_chain/build/contracts/PositionTracking.json'));
 
 module.exports = function (callback) {
@@ -11,25 +11,24 @@ module.exports = function (callback) {
 
     accounts = web3.eth.getAccounts()
         .then(function (accounts) {
-            // deprecated; addresses must be used
-            account = accounts[0];
+            account = accounts[0]; // deprecated; addresses must be used
         }).then(function () {
             contract = new web3.eth.Contract(TrackingContractJSON.abi, TrackingContractJSON.networks['15'].address);
 
-            contract.events.PositionValue({
-            }, function (error, event) {
-                if (error) console.log("error", error);
-            })
-                .on('data', function (event) {
-                    console.log("data", event, "\n######################################\n"); // same results as the optional callback above
-                })
-                .on('changed', function (event) {
-                    console.log("changed", event, "\n######################################\n");
-                    // remove event from local database
-                })
-                .on('error', function (event) {
-                    console.log("error 2", event, "\n######################################\n");
-                })
+            // contract.events.PositionValue({
+            // }, function (error, event) {
+            //     if (error) console.log("error", error);
+            // })
+            //     .on('data', function (event) {
+            //         console.log("data", event, "\n-------------------------------------------------\n"); // same results as the optional callback above
+            //     })
+            //     .on('changed', function (event) {
+            //         console.log("changed", event, "\n-------------------------------------------------\n");
+            //         // remove event from local database
+            //     })
+            //     .on('error', function (event) {
+            //         console.log("error 2", event, "\n-------------------------------------------------\n");
+            //     })
 
             setInterval (sendPositionIntoBlockchain, 2000);
         });

@@ -9,10 +9,10 @@
     "coinbase": "0x0000000000000000000000000000000000000000",
     "gasLimit": "0x2FEFD800",
     "alloc": {
-        "7df9a875a174b3bc565e6424a0050ebc1b2d1d82": {
+        "0x14767897d33c020dc6aa5341933b8ac21e76b607": {
             "balance": "300000"
         },
-        "f41c74c9ae680c1aa78f42e5647a62f353b7bdde": {
+        "0x9db05195a84975e6e0f9cb7151f0aaf2b5f7e867": {
             "balance": "400000"
         }
     }
