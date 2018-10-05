@@ -51,7 +51,7 @@ EOF
 
 ##########
 # FRAGEN / TODO
-# Mit welchem Passwort werden die über jq erstellten Accounts geunlockt??
+# Mit welchem Passwort werden die über jq erstellten Accounts geunlockt??: geth sieht die geprefundeten Accounts nämlich nicht
 # Ether überweisen, aber das sollte kein Problem sein
 # Fehler: Fatal: Error starting protocol stack: listen udp :30303: bind: address already in use => Port ist doch frei, siehe oben im Shellscript??
 #
