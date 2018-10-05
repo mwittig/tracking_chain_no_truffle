@@ -11,7 +11,7 @@ module.exports = function (callback) {
 
     accounts = web3.eth.getAccounts()
         .then(function (accounts) {
-            account = accounts[0]; // deprecated; addresses must be used
+            account = accounts[1]; // deprecated; addresses should be used
         }).then(function () {
             contract = new web3.eth.Contract(TrackingContractJSON.abi, TrackingContractJSON.networks['15'].address);
         }).then(function () {
@@ -24,11 +24,11 @@ module.exports = function (callback) {
                     console.log("y:", event.returnValues['2'], "\n");
                 })
                 .on('changed', function (event) {
-                    console.log("changed", event, "\n-------------------------------------------------\n");
+                    console.log("changed", event);
                     // remove event from local database
                 })
                 .on('error', function (event) {
-                    console.log("error 2", event, "\n-------------------------------------------------\n");
+                    console.log("error 2", event);
                 })
 
             contract.methods.notify().send({
