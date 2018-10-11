@@ -19,19 +19,19 @@ echo "removed old chain data"
 #personal.newAccount("Write here a good, randomly generated, passphrase!")
 #EOF
 
-ACCOUNTID1="14767897d33c020dc6aa5341933b8ac21e76b607"
-ACCOUNTID2="9db05195a84975e6e0f9cb7151f0aaf2b5f7e867"
+ACCOUNTID1="14767897d33c020dc6aa5341933b8ac21e76b607" # assign anything
+ACCOUNTID2="9db05195a84975e6e0f9cb7151f0aaf2b5f7e867" # assign anything
 
 # enable lastpipe
 shopt -s lastpipe
 set +m
 
 # create new accounts before geth init
-cat << EOF | geth account new --datadir ../tracking_chain/datadir | grep "Address: " | $ACCOUNTID=`cut -d "{" -f2 | cut -d "}" -f1`
+cat << EOF | geth account new --datadir ../tracking_chain/datadir | grep "Address: " | ACCOUNTID1=`cut -d "{" -f2 | cut -d "}" -f1`
 bla
 bla
 EOF
-cat << EOF | geth account new --datadir ../tracking_chain/datadir | grep "Address: " | cut -d "{" -f2 | cut -d "}" -f1
+cat << EOF | geth account new --datadir ../tracking_chain/datadir | grep "Address: " | ACCOUNTID2=`cut -d "{" -f2 | cut -d "}" -f1`
 bla
 bla
 EOF
@@ -59,7 +59,7 @@ echo "init done!"
 # Accounts mit jq einfügen (Fehler: Ether waren nicht als String in jq angegeben)
 # Mining funds können beliebigen Accounts zugewiesen werden, um diesen zu befüllen
 # Chain.js und notifyAgent.js funktionieren parallel auf unterschiedlichen Accounts
-#
+# accountid aus "geth account new" greppen und in die genesis_block.json schreiben zum Prefunden
 #
 #
 #
@@ -68,9 +68,9 @@ echo "init done!"
 
 ##########
 # FRAGEN / TODO
-# accountid aus "geth account new" greppen und in die genesis_block.json schreiben zum Prefunden
 # Ether überweisen, aber das sollte kein Problem sein
 # Fehler: Fatal: Error starting protocol stack: listen udp :30303: bind: address already in use => Port ist doch frei, siehe oben im Shellscript??
+#   => jedoch: Fehler taucht nicht deterministisch auf
 # WS statt IPC+
 #
 #
