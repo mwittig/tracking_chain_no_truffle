@@ -2,7 +2,7 @@
 
 This project was created for educational purposes. Its aim is to use `web3` instead of `truffle-contract`. The use case is a delivery or tracking process which is described in this private Ethereum Blockchain. Geth is the mean of choice. Basically, there are two Ðapps running based on a single contract. At first, random position data is written into the Blockchain. The second Ðapp constantly listens to events that are emitted at each writing process and keeps us up to date with notifications.
 
-Some automation via a Shell Script was done for initial steps instead of using truffle.
+Some automation via a shell script was done for initial steps instead of using truffle.
 
 ## Usage
 
@@ -20,7 +20,7 @@ cd tracking_chain_notruffle/
 chmod +x ./initChain.sh
 ./initChain.sh ./genesis_block.json
 ```
-The shellscript does the following: It kills the process that may be listening on the port where Geth should be run. Additionally, it clears any old chain data from our data directory.
+The shell script does the following: It kills the process that may be listening on the port where Geth should be run. Additionally, it clears any old chain data from our data directory.
 Before Geth is started, two accounts are created. Their addresses get pasted into the `genesis_template.json` and will be prefunded.
 Then, `geth init` gets called to start our chain with the genesis block.
 Finally, the geth client gets started with arguments that determine a private chain that communicates via IPC. Moreover, both accounts get unlocked to enable them to send transactions. Debugging mode is also enabled.
@@ -65,7 +65,7 @@ node notifyAgent.js
 ### 5 Errors
 
 If there occur any messages that contain any hint to lacking gas or funds you may have started the Ðapps too fast. Try again after some time.
-Should the problem persist, the funds on the account that executes the contract are really too low. Therefore, you need to change the mining funds going to teh second account.
+Should the problem persist, the funds on the account that executes the contract are really too low. Therefore, you need to change the mining funds going to the second account.
 
 ``` sh
 > miner.setEtherbase (eth.accounts[0...x])
