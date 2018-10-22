@@ -27,4 +27,14 @@ Finally, the geth client gets started with arguments that determine a private bl
 
 ### 2 Mining
 
-Secondly, in order to work with our Blockchain, the miner needs to be started. By default, the "first" account recevies all mining fees. It's weird that by default `eth.accounts[0]` is the default for mining but when it comes to unlocking, this method is unsafe and deprecated
+Now, we need to attach a console to the running geth process.
+
+``` sh
+geth attach --datadir "/home/telekom/Library/Ethereum/"
+```
+
+Secondly, in order to work with our Blockchain, the miner needs to be started. By default, the "first" account recevies all mining fees. It's weird that by default `eth.accounts[0]` is the default for mining but when it comes to unlocking, this method is unsafe and deprecated. In the geth console type:
+
+``` sh
+> miner.start()
+```
