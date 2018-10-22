@@ -23,7 +23,7 @@ chmod +x ./initChain.sh
 The shellscript does the following: It kills the process that may be listening on the port where Geth should be run. Additionally, it clears any old chain data from our data directory.
 Before Geth is started, two accounts are created. Their addresses get pasted into the `genesis_template.json` to be prefunded.
 Then, `geth init` gets called to start our chain with the genesis block.
-Finally, the geth client gets started with arguments that determine a private blockchain that communicates via IPC. Moreover, our accounts get unlocked to enable them to send transactions. Debugging mdoe is also enabled.
+Finally, the geth client gets started with arguments that determine a private blockchain that communicates via IPC. Moreover, our accounts get unlocked to enable them to send transactions. Debugging mode is also enabled.
 
 ### 2 Mining
 
@@ -37,4 +37,10 @@ Secondly, in order to work with our Blockchain, the miner needs to be started. B
 
 ``` sh
 > miner.start()
+```
+
+Before the minig starts there ususally is a DAG being calculated, which needs some time. After that you will notice the funds on our first account will increase:
+
+``` sh
+> eth.getBalance(eth.accounts[0])
 ```
