@@ -21,6 +21,10 @@ chmod +x ./initChain.sh
 ./initChain.sh ./genesis_block.json
 ```
 The shellscript does the following: It kills the process that may be listening on the port where Geth should be run. Additionally, it clears any old chain data from our data directory.
-
 Before Geth is started, two accounts are created. Their addresses get pasted into the `genesis_template.json` to be prefunded.
-Then, `geth init`
+Then, `geth init` gets called to start our chain with the genesis block.
+Finally, the geth client gets started with arguments that determine a private blockchain that communicates via IPC. Moreover, our accounts get unlocked to enable them to send transactions. Debugging mdoe is also enabled.
+
+### 2 Mining
+
+Secondly, in order to work with our Blockchain, the miner needs to be started. By default, the "first" account recevies all mining fees. It's weird that by default `eth.accounts[0]` is the default for mining but when it comes to unlocking, this method is unsafe and deprecated
