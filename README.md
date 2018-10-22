@@ -65,4 +65,10 @@ node notifyAgent.js
 ### Errors
 
 If there occur any messages that contain any hint to lacking gas or funds you may have started the Ðapps too fast. Try again after some time.
-Should the problem persist, the funds on the account that executes the contract are really too low. Therefore, you need to change the mining funds going to teh second account. Optionalley, a simple transaction with sufficient funds will do the same.
+Should the problem persist, the funds on the account that executes the contract are really too low. Therefore, you need to change the mining funds going to teh second account.
+
+``` sh
+> miner.setEtherbase (eth.accounts[0...x])
+```
+
+Optionally, a simple transaction with sufficient funds will do the same.
