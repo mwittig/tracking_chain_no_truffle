@@ -1,3 +1,3 @@
-# tracking_chain_no_truffle
+# Tracking Chain without Truffle
 
-<h1> hello
+## Usage
