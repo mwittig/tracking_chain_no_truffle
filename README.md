@@ -46,9 +46,9 @@ Before the mining starts, there is ususally a DAG being calculated, which needs 
 
 ```
 
-### 3 Deployment
+### 3 Migration
 
-To keep this project simple, Truffle is being used here once. Back into the first console type:
+A "build"-directory may already occur in the hierarchy of the first repository. If this is not the case, the project needs to be compiled and deployed. To keep itsimple, Truffle is being used here once. Back into the first console type:
 ``` sh
 cd ../tracking_chain
 truffle migrate --reset --network testNet
@@ -72,3 +72,7 @@ Should the problem persist, the funds on the account that executes the contract 
 ```
 
 Optionally, a simple transaction with sufficient funds will do the same.
+
+## Future
+
+There are still a lot of things that need to be added. For instance, the migration process can be done without truffle too. Also, the use of more than one node has to be implemented. Another point is the use of a RPC conncection provider instead of IPC.
