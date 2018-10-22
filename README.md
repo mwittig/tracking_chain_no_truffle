@@ -21,7 +21,7 @@ chmod +x ./initChain.sh
 ./initChain.sh ./genesis_block.json
 ```
 The shellscript does the following: It kills the process that may be listening on the port where Geth should be run. Additionally, it clears any old chain data from our data directory.
-Before Geth is started, two accounts are created. Their addresses get pasted into the `genesis_template.json` and are prefunded.
+Before Geth is started, two accounts are created. Their addresses get pasted into the `genesis_template.json` and will be prefunded.
 Then, `geth init` gets called to start our chain with the genesis block.
 Finally, the geth client gets started with arguments that determine a private chain that communicates via IPC. Moreover, both accounts get unlocked to enable them to send transactions. Debugging mode is also enabled.
 
