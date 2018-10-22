@@ -1,8 +1,8 @@
 # Tracking Chain without Truffle
 
-This project was created for educational purposes. The use case is a delivery or tracking process which is described in this private Ethereum Blockchain. Geth is the mean of choice. Basically, there are two smart contracts running. At first, random position data is written into the Blockchain. The second contract constantly listens to events that are emitted at each writing process and keeps us up to date with notifications.
+This project was created for educational purposes. Its aim is to use `web3` instead of `truffle-contract`. The use case is a delivery or tracking process which is described in this private Ethereum Blockchain. Geth is the mean of choice. Basically, there are two Ðapps running based on a single contract. At first, random position data is written into the Blockchain. The second Ðapp constantly listens to events that are emitted at each writing process and keeps us up to date with notifications.
 
-Some automation via ShellScript was done for initial steps instead of using truffle.
+Some automation via a Shell Script was done for initial steps instead of using truffle.
 
 ## Usage
 
