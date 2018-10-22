@@ -54,7 +54,7 @@ cd ../tracking_chain
 truffle migrate --reset --network testNet
 ```
 
-### 4 Start Ðapps
+### 4 Starting Ðapps
 
 ``` sh
 cd ../tracking_chain_notruffle
@@ -62,7 +62,7 @@ node Chain.js
 node notifyAgent.js
 ```
 
-### Errors
+### 5 Errors
 
 If there occur any messages that contain any hint to lacking gas or funds you may have started the Ðapps too fast. Try again after some time.
 Should the problem persist, the funds on the account that executes the contract are really too low. Therefore, you need to change the mining funds going to teh second account.
