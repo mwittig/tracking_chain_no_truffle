@@ -1,0 +1,14 @@
+{
+  "name": "tracking_client_no_truffle",
+  "version": "1.0.0",
+  "description": "tracks something",
+  "main": "Chain.js",
+  "scripts": {
+    "test": "echo \"not supported\""
+  },
+  "author": "lm",
+  "license": "ISC",
+  "dependencies": {
+    "web3": "^1.0.0-beta.36"
+  }
+}
