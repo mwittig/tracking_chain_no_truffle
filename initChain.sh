@@ -1,26 +1,21 @@
 #!/bin/bash
 
-#kill tasks on the default port
+#kill tasks on the default port and old chain data
 pid="$(lsof -t -i:30303)"
-if [ -n "$pid" ]; then
-    sudo kill "$pid";
-    echo "killed process with pid $pid";
-fi
-#sleep 2  
-rm -rf ~/eth_projects/tracking_chain/datadir/
-rm ~/eth_projects/tracking_chain_notruffle/genesis_block.json
+#if [ -n "$pid" ]; then
+    while [ -d /proc/"$pid" ]; do
+        echo "killing process with pid $pid";
+        sudo kill "$pid" || break;
+    done
+#fi
+sleep 2
+
+rm -rf ../tracking_chain/datadir/
+rm genesis_block.json
 echo "removed old chain data"
-#rm -rf ~/.ethash/
 
-#sleep 2
-# start the private blockchain and create accounts
-#cat << EOF | geth attach;
-#personal.newAccount("Write here a good, randomly generated, passphrase!")
-#personal.newAccount("Write here a good, randomly generated, passphrase!")
-#EOF
-
-ACCOUNTID1="14767897d33c020dc6aa5341933b8ac21e76b607" # assign anything
-ACCOUNTID2="9db05195a84975e6e0f9cb7151f0aaf2b5f7e867" # assign anything
+ACCOUNTID1="address placeholder" # assign some random stuff
+ACCOUNTID2="address placeholder" # assign anything stuff
 
 # enable lastpipe
 shopt -s lastpipe
@@ -38,15 +33,15 @@ EOF
 sleep 1
 
 # paste account addresses from output of geth account to into genesis_block.json
-jq --arg account1 ${ACCOUNTID1} --arg account2 ${ACCOUNTID2} '.alloc[$account1] += {balance:"300000"} | .alloc[$account2] += {balance:"300000"}' genesis_template.json > genesis_block.json
+jq --arg account1 ${ACCOUNTID1} --arg account2 ${ACCOUNTID2} '.alloc[$account1] += {balance:"300000000"} | .alloc[$account2] += {balance:"300000000"}' genesis_template.json > genesis_block.json
 sleep 1
 
-# init
-geth --port 0 --nodiscover --ws --wsport 8546 --wsorigins all --datadir ../tracking_chain/datadir init $1 #add: --netrestrict="192.168.2.1/24"
+# initialization of genesis block
+geth --datadir ../tracking_chain/datadir init $1
 sleep 2
 
 # start private testnet
-cat << EOF | geth --verbosity 2 --networkid 15 --unlock "0,1" --rpc --cache 512 --ipcpath ~/Library/Ethereum/geth.ipc --datadir ../tracking_chain/datadir &
+cat << EOF | geth --mine --rpc --verbosity 4 --nodiscover --ws --wsorigins "*" --networkid 15 --unlock "$ACCOUNTID1, $ACCOUNTID2" --cache 512 --datadir ../tracking_chain/datadir &
 bla
 bla
 EOF
@@ -60,19 +55,20 @@ echo "init done!"
 # Mining funds können beliebigen Accounts zugewiesen werden, um diesen zu befüllen
 # Chain.js und notifyAgent.js funktionieren parallel auf unterschiedlichen Accounts
 # accountid aus "geth account new" greppen und in die genesis_block.json schreiben zum Prefunden
-#
-#
-#
+# testNet ist privat
+# SmartContract notify.js gitb nichts aus
+# README schreiben
 ##########
 
 
 ##########
 # FRAGEN / TODO
-# Ether überweisen, aber das sollte kein Problem sein
 # Fehler: Fatal: Error starting protocol stack: listen udp :30303: bind: address already in use => Port ist doch frei, siehe oben im Shellscript??
 #   => jedoch: Fehler taucht nicht deterministisch auf
-# WS statt IPC+
-#
-#
-#
+# WS statt IPC
+# miner.start() => keine DAG-Berechnung
+# POW => POA
+# Review des Quellcodes der ÐApp
+# 
+# Aufsatz schreiben (Latex)
 ##########
