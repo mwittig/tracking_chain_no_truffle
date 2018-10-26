@@ -41,7 +41,7 @@ geth --datadir ../tracking_chain/datadir init $1
 sleep 2
 
 # start private testnet
-cat << EOF | geth --mine --rpc --verbosity 4 --nodiscover --ws --wsorigins "*" --networkid 15 --unlock "$ACCOUNTID1, $ACCOUNTID2" --cache 512 --datadir ../tracking_chain/datadir &
+cat << EOF | geth --mine --rpc --verbosity 4 --nodiscover --ws --wsorigins "*" --wsaddr 0.0.0.0 --networkid 15 --unlock "$ACCOUNTID1, $ACCOUNTID2" --cache 512 --datadir ../tracking_chain/datadir &
 bla
 bla
 EOF
