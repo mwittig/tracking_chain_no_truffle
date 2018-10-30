@@ -1,18 +1,19 @@
 #!/bin/bash
 
 #kill tasks on the default port and old chain data
-pid="$(lsof -t -i:30303)"
-#if [ -n "$pid" ]; then
+if [ "$2"!="docker" ]; then
+    pid="$(lsof -t -i:30303)"
     while [ -d /proc/"$pid" ]; do
         echo "killing process with pid $pid";
         sudo kill "$pid" || break;
     done
-#fi
-sleep 2
 
-rm -rf ../tracking_chain/datadir/
-rm genesis_block.json
-echo "removed old chain data"
+    rm -rf ../tracking_chain/datadir/
+    rm genesis_block.json
+    echo "removed old chain data"
+    sleep 2
+fi
+
 
 ACCOUNTID1="address placeholder" # assign some random stuff
 ACCOUNTID2="address placeholder" # assign anything stuff
@@ -41,7 +42,7 @@ geth --datadir ../tracking_chain/datadir init $1
 sleep 2
 
 # start private testnet
-cat << EOF | geth --mine --rpc --verbosity 4 --nodiscover --ws --wsorigins "*" --wsaddr 0.0.0.0 --networkid 15 --unlock "$ACCOUNTID1, $ACCOUNTID2" --cache 512 --datadir ../tracking_chain/datadir &
+cat << EOF | geth --mine --rpc --verbosity 4 --nodiscover --ws --wsorigins "*" --wsaddr 0.0.0.0 --networkid 15 --unlock "$ACCOUNTID1, $ACCOUNTID2" --cache 512 --datadir ../tracking_chain/datadir --wsapi eth,personal,web3,clique,net &
 bla
 bla
 EOF
@@ -58,6 +59,7 @@ echo "init done!"
 # testNet ist privat
 # SmartContract notify.js gitb nichts aus
 # README schreiben
+# WS statt IPC
 ##########
 
 
@@ -65,7 +67,7 @@ echo "init done!"
 # FRAGEN / TODO
 # Fehler: Fatal: Error starting protocol stack: listen udp :30303: bind: address already in use => Port ist doch frei, siehe oben im Shellscript??
 #   => jedoch: Fehler taucht nicht deterministisch auf
-# WS statt IPC
+# 
 # miner.start() => keine DAG-Berechnung
 # POW => POA
 # Review des Quellcodes der ÐApp
